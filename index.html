@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* Base styles for light theme */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    nav {
+      background: black;
+      overflow: hidden;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0px 4px 6px black;
+    }
+    
+    nav a {
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-size: 18px;
+    }
+    
+    nav a:hover {
+      background-color: black;
+      color: white;
+      box-shadow: 0px 20px 8px rgba(0, 0, 0, 0.1);
+      font-weight: bold;
+      transform: scale(1.05);
+    }
+    
+    .logo img {
+      max-width: 100px;
+      vertical-align: middle;
+    }
+    
+    .Registration {
+      display: flex;
+      align-items: center;
+    }
+    
+    .Registration a {
+      display: block;
+      background-color: goldenrod;
+      color: white;
+      padding: 10px 20px; 
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+    
+    .Registration a:hover {
+      background-color: #9f9c9c;
+    }
+
+    .slider {
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slide {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: row;
+      width: 80%;
+      height: 80%;
+      margin: 20px;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .container img {
+      width: 50%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .text {
+      width: 50%;
+      padding: 20px;
+    }
+
+    .slider {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+    }
+
+    .slide {
+      scroll-snap-align: start;
+      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    footer {
+      background-color: #FFB301;
+      color: #fff;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 200px;
+      margin: 10px;
+    }
+
+    .footer-section h4 {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+      color: #FFF;
+      text-decoration: none;
+    }
+
+    .footer-section ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .google-map {
+      flex: 2;
+      min-width: 300px;
+      margin: 10px;
+    }
+
+    .google-map iframe {
+      width: 100%;
+      height: 250px;
+      border: 0;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .social-media a {
+      margin: 10px 10px;
+    }
+
+    .social-media img {
+      width: 30px;
+      height: 30px;
+      margin-top: -300px;
+    }
+
+    /* Dark theme styles */
+    .dark-theme {
+      background-color: #181818;
+      color: #ffffff;
+    }
+
+    .dark-theme nav {
+      background: #333;
+    }
+
+    .dark-theme .Registration a {
+      background-color: #444;
+    }
+
+    .dark-theme .Registration a:hover {
+      background-color: #666;
+    }
+
+    .dark-theme .container {
+      background-color: #333;
+      border: 1px solid #444;
+    }
+
+    .dark-theme footer {
+      background-color: #444;
+    }
+
+    .dark-theme .footer-section ul li a {
+      color: #fff;
+    }
+
+    .dark-theme .footer-section ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .dark-theme .google-map iframe {
+      border: 0;
+    }
+
+    .dropdown-toggle {
+        background-color: #333; /* Background color */
+        color: white; /* Text color */
+        padding: 10px 20px; /* Padding */
+        border: none; /* Remove border */
+        cursor: pointer; /* Add cursor pointer */
+    }
+
+    .dropdown-menu {
+        display: none; /* Hide dropdown menu by default */
+        position: absolute; /* Position absolute */
+        background-color: black; /* Background color */
+        min-width: 160px; /* Minimum width */
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); /* Box shadow */
+        z-index: 1; /* Set z-index to display above other content */
+    }
+
+    .dropdown-menu a {
+        color: white; /* Text color */
+        padding: 12px 16px; /* Padding */
+        text-decoration: none; /* Remove underline */
+        display: block; /* Display block */
+    }
+
+    .dropdown-menu a:hover {
+        background-color: #555; /* Background color */
+    }
+
+    .dropdown-toggle:hover + .dropdown-menu {
+        display: block; /* Display dropdown menu */
+    }
+
+    .popup {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      background-color: rgba(255, 255, 255, 0.8);B
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px var(--container-shadow-color);
+      text-align: center;
+      position: relative;
+    }
+
+    .popup-buttons button {
+      margin: 10px;
+      padding: 10px 20px;
+      background-color:goldenrod;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .popup-buttons button:hover {
+      background-color:darkgoldenrod ;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-color);
+    }
+
+
+    
+  </style>
+  <script>
+    document.addEventListener('contextmenu', function(event) {
+        event.preventDefault();
+        toggleTheme();
+    });
+
+    // Theme toggle function
+    function toggleTheme() {
+      document.body.classList.toggle('dark-theme');
+    }
+
+    
+  </script>
+</head>
+<body>
+  <nav>
+    <img loading="lazy" role="img" alt="MSU_Revised-Logo.png" src="https://f2.leadsquaredcdn.com/t/medhavi/content/common/images/MSU_Revised-Logo.png" width="200" class="lsq-component-image lsq-renderer-components" style="width: 200px !important;">
+    <a href="#">Home</a>
+    <div class="dropdown show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="aboutDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            About
+        </a>
+        <div class="dropdown-menu" aria-labelledby="aboutDropdown">
+            <a class="dropdown-item" href="#">About Us</a>
+            <a class="dropdown-item" href="#">Our Team</a>
+            <a class="dropdown-item" href="#">Mission & Vision</a>
+        </div>
+    </div>
+    <div class="dropdown show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="projectDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Project
+        </a>
+        <div class="dropdown-menu" aria-labelledby="projectDropdown">
+            <a class="dropdown-item" href="project1.html" onclick="navigateToProject1()">Project 1</a>
+            <a class="dropdown-item" href="#">Project 2</a>
+            <a class="dropdown-item" href="#">Project 3</a>
+        </div>
+    </div>
+    <a href="#">Blog</a>
+    <a href="#">Social</a>
+    <div class="Registration">
+        <a href="login.html">Login/Registration</a>
+    </div>
+  </nav>
+
+  <script>
+    function navigateToProject1() {
+      // Optional: You can perform additional actions before redirection if needed
+      console.log("Redirecting to Project 1 page...");
+    }
+  </script>
+
+  <!-- Slide container -->
+  <div class="slider">
+    <div class="slide">
+      <div class="container">
+        <img src="ln.jpeg" alt="Image 1">
+        <div class="text">
+          <h2>LEARNING</h2>
+          <p>Learning can be defined as a relatively permanent change in behaviour or potential behaviour as a result of direct or indirect experience.</p>
+        </div>
+      </div>
+    </div>
+    <div class="slide">
+      <div class="container">
+        <img src="music.jpeg" alt="Image 2">
+        <div class="text">
+          <h2>MUSIC</h2>
+          <p>Music literally changes the brain. Neurological researchers have found that listening to music triggers the release of several neurochemicals that play a role in brain function and mental health.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <span class="close" id="close-popup">&times;</span>
+      <h2>Welcome!</h2>
+      <p>Would you like to Sign In or Sign Up?</p>
+      <div class="popup-buttons">
+        <button onclick="window.location.href='login.html'">Sign In</button>
+        <button onclick="window.location.href='login.html'">Sign Up</button>
+      </div>
+    </div>
+  </div>
+  <script>
+const popup = document.getElementById('popup');
+    const closePopup = document.getElementById('close-popup');
+
+    // Show the popup after 10 seconds
+    setTimeout(() => {
+      popup.style.display = 'flex';
+    }, 10000);
+
+    // Close the popup when the close button is clicked
+    closePopup.addEventListener('click', () => {
+      popup.style.display = 'none';
+    });
+
+    // Close the popup when clicking outside of it
+    window.addEventListener('click', (event) => {
+      if (event.target === popup) {
+        popup.style.display = 'none';
+      }
+    });
+
+    
+  </script>
+  <footer>
+    <div class="footer-section">
+      <h4>Contact Us</h4>
+      <ul>
+        <li>Email: info@example.com</li>
+        <li>Phone: +123456789</li>
+        <li>Address: 123 Main Street, Anytown, USA</li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="google-map">
+      <h4>Our Location</h4>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.118688632742!2d144.963157615593!3d-37.81667887975147!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d43caba2e1f%3A0x1f9e20e515c6f3f!2sFederation%20Square!5e0!3m2!1sen!2sau!4v1614424292281!5m2!1sen!2sau" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+    <div class="social-media">
+      <a href="#"><img src="facebook.png" alt="Facebook"></a>
+      <a href="#"><img src="twitter.png" alt="Twitter"></a>
+      <a href="#"><img src="instagram.png" alt="Instagram"></a>
+    </div>
+
+  </footer>
+
+</body>
+</html>
